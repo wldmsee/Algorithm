@@ -1,0 +1,97 @@
+
+// 뒤집힌 문자열
+/*
+    - 문제 설명
+    문자열 my_string이 매개변수로 주어집니다. my_string을 거꾸로 뒤집은 문자열을 return하도록 solution 함수를 완성해주세요.
+
+    - 제한 사항
+    1 ≤ my_string의 길이 ≤ 1,000
+
+    - 입출력 예
+        my_string	return
+        "jaron"	    "noraj"
+        "bread"   	"daerb"
+
+    - 입출력 설명
+    입출력 예 #1
+    my_string이 "jaron"이므로 거꾸로 뒤집은 "noraj"를 return합니다.
+
+    입출력 예 #2
+    my_string이 "bread"이므로 거꾸로 뒤집은 "daerb"를 return합니다.
+
+ */
+
+/*
+class Solution {
+    public String solution(String my_string) {
+        String answer = "";
+        return answer;
+    }
+}
+
+ * 접근 방법
+    my_string = {jaron}
+    return = {noraj} swap
+    my_string[0] <-> my_string[4]
+    my_string[i] : i=0 i < my_string.length i++
+    my_string[j] << swap할 변수
+    substring 문자열 자르기
+
+    string[] my_
+    for (int i = 0; i < my_string.length; i++) {
+
+    }
+    retrurn
+
+    >>
+    BUT !!!
+    자바에서 String은 불변 객체이기 때문에, 배열처럼 my_string[0] = 'n'과 같이 인덱스로 직접 문자를 바꾸는 동작이 불가능
+    1) StringBuilder
+
+
+    2) char[] arr 배열 swap 이용
+       char[] arr = my_string.toCharArray();
+
+       양 끝에서 시작하여 가운데로 오면서 swap (길이의 절반만 반복)
+       for (int i = 0; i < arr.length / 2; i++) {
+            int targetIndex = arr.length - 1 - i; // 대칭되는 뒤쪽 인덱스
+
+            // 값 바꾸기
+            char temp = arr[i];
+            arr[i] = arr[targetIndex];
+            arr[targetIndex] = temp;
+
+            return new String(arr);
+
+
+ */
+
+
+
+
+class Solution {
+    public String solution(String my_string) {
+
+        return new StringBuilder(my_string).reverse.toString();
+    }
+}
+
+class Solution {
+    public String solution(String my_string) {
+        // 1. 문자열을 수정 가능한 char 배열로 변환
+        char[] arr = my_string.toCharArray();
+
+        // 2. 양 끝에서 시작하여 가운데로 오면서 swap (길이의 절반만 반복)
+        for (int i = 0; i < arr.length / 2; i++) {
+            int targetIndex = arr.length - 1 - i; // 대칭되는 뒤쪽 인덱스
+
+            // 값 바꾸기 (swap)
+            char temp = arr[i];
+            arr[i] = arr[targetIndex];
+            arr[targetIndex] = temp;
+        }
+
+        // 3. char 배열을 다시 문자열로 변환하여 반환
+        return new String(arr);
+    }
+}
