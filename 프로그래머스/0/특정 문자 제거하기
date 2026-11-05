@@ -43,3 +43,18 @@ class Solution {
         return answer;
     }
 }
+
+
+*** 그외 풀이 StringBuilder 사용
+
+StringBuilder sb = new StringBuilder();
+        
+        // my_string을 한 글자씩 쪼갠 배열로 반복문 돌리기
+        for (String str : my_string.split("")) {
+            // 현재 글자가 삭제할 letter와 '같지 않을 때만' 추가
+            if (!str.equals(letter)) {
+                sb.append(str);
+            }
+        }
+        
+        return sb.toString();
