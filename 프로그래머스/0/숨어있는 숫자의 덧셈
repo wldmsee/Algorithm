@@ -1,0 +1,100 @@
+
+// 숨어있는 숫자의 덧셈
+/*
+    - 문제 설명
+     문자열 my_string이 매개변수로 주어집니다. my_string안의 모든 자연수들의 합을 return하도록 solution 함수를 완성해주세요.
+
+
+    - 제한 사항
+    1 ≤ my_string의 길이 ≤ 1,000
+    my_string은 소문자, 대문자 그리고 한자리 자연수로만 구성되어있습니다.
+    연속된 숫자도 각각 한 자리 숫자로 취급합니다.
+
+    - 입출력 예
+           my_string	  result
+        "aAb1B2cC34oOp"	    10
+         "1a2b3c4d123"	    16
+
+
+    - 입출력 예 설명
+    입출력 예 #1
+    "aAb1B2cC34oOp"안의 한자리 자연수는 1, 2, 3, 4 입니다. 따라서 1 + 2 + 3 + 4 = 10 을 return합니다.
+
+    입출력 예 #2
+    "1a2b3c4d123Z"안의 한자리 자연수는 1, 2, 3, 4, 1, 2, 3 입니다. 따라서 1 + 2 + 3 + 4 + 1 + 2 + 3 = 16 을 return합니다.
+
+
+    - 접근 방법
+    char c = my_string.toCharArray() != string (소/대문자) > 추출
+    한자리 자연수만 빼서 더하기
+    >>
+    자바에서는 char 타입이 내부적으로 아스키 코드(ASCII) 숫자 값을 가지고 있기 때문에
+    알파벳을 일일이 제외하기보다 c >= '1' && c <= '9' (또는 '0'부터 '9') 범위로 숫자인지 직접 확인하는 것이 좋음
+
+
+
+
+*/
+
+class Solution28 {
+    public int solution(String my_string) {
+        int answer = 0;
+        for ( char c : my_string.toCharArray() ) {
+//            if ( c != '소/대문자' ) {
+//                answer += c;
+//            }
+            if ( c >= '1' && c <= '9') {
+                answer += c - '0';
+                // 아스키코드 - 기준점 : 자연수로 만들기
+            }
+        }
+        return answer;
+    }
+}
+
+/*
+    -- 참고 풀이
+    [ 자바 내장 메서드 ]
+    public int solution(String my_string) {
+        int answer = 0;
+
+        for (char c : my_string.toCharArray()) {
+            // c가 숫자인지 판별
+            if (Character.isDigit(c)) {
+                // 문자 형태의 숫자를 실제 int 값으로 변환
+                answer += Character.getNumericValue(c);
+            }
+        }
+
+        return answer;
+    }
+
+    [ * 연속된 숫자는 하나의 숫자로 볼 경우 ]
+    class Solution {
+    public int solution(String my_string) {
+        int answer = 0;
+        String temp = ""; // 연속된 숫자를 임시로 저장할 문자열
+
+        for (char c : my_string.toCharArray()) {
+            if (Character.isDigit(c)) {
+                temp += c; // 숫자면 문자열 뒤에 이어 붙임 ('3' + '4' -> "34")
+            } else {
+                // 알파벳을 만났는데, 그동안 모아둔 숫자가 있다면 정수로 바꿔서 더함
+                if (!temp.equals("")) {
+                    answer += Integer.parseInt(temp);
+                    temp = ""; // 다음 숫자를 위해 빈 문자열로 초기화
+                }
+            }
+        }
+
+        // 문자열이 숫자로 끝났을 경우를 대비해 마지막 남은 숫자 처리
+        if (!temp.equals("")) {
+            answer += Integer.parseInt(temp);
+        }
+
+        return answer;
+    }
+}
+
+
+ */
