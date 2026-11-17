@@ -1,0 +1,111 @@
+
+// 약수 구하기
+/*
+    - 문제 설명
+    정수 n이 매개변수로 주어질 때, n의 약수를 오름차순으로 담은 배열을 return하도록 solution 함수를 완성해주세요.
+
+
+    - 제한 사항
+    1 ≤ n ≤ 10,000
+
+
+    - 입출력 예
+        n	             result
+        24	    [1, 2, 3, 4, 6, 8, 12, 24]
+        29	             [1, 29]
+
+
+    - 입출력 예 설명
+    입출력 예 #1
+    24의 약수를 오름차순으로 담은 배열 [1, 2, 3, 4, 6, 8, 12, 24]를 return합니다.
+
+    입출력 예 #2
+    29의 약수를 오름차순으로 담은 배열 [1, 29]를 return합니다.
+
+
+    - 접근 방법
+    n의 약수 : n % a == 0 ( a <= 24 )
+    for ( int a = 0; a <= n; a++ ) >> int a = 1 (약수는 1부터)
+    Array.Sort >> 오름차순
+
+    public int[] solution(int n) {
+        int[] answer = {};
+        for ( int a = 0; a <= n; a++) {
+            if ( n % a == 0 ) {
+                // answer 배열에 담기 ?
+            }
+        }
+        Arrays.sort(answer);
+
+        return answer;
+    }
+
+
+*/
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Solution32 {
+    public int[] solution(int n) {
+        // 약수의 개수 구하기
+        int count = 0;
+        for ( int a = 1; a <= n; a++ ) {
+            if ( n % a == 0 ) {
+                count++;
+            }
+        }
+        // 약수의 개수만큼의 배열 크기
+        int[] answer = new int[count];
+        // 배열 위치 (인덱스)
+        int idx = 0;
+
+        // 약수를 배열에 넣기
+        for ( int a = 1; a <= n; a++ ) {
+            if ( n % a == 0 ) {
+                answer[idx] = a;
+                idx++;
+            }
+        }
+        return answer;
+    }
+
+    public int[] solution2(int n) {
+        List<Integer> list = new ArrayList<>();
+
+        for ( int a = 1; a <= n; a++ ) {
+            if ( n % a == 0 ) {
+                list.add(a);
+            }
+        }
+        int[] answer = new int[list.size()];
+        for ( int i = 0; i < list.size(); i++ ) {
+            answer[i] = list.get(i);
+
+            }
+        return answer;
+    }
+}
+
+
+
+
+
+/*
+    -- 다른 풀이
+    1) 약수 개수 count > 약수 개수만큼 배열 크기 지정 int[] answer = new int[count];
+
+    2) ArrayList list > list.add > int[] answer = int[list.size]
+    
+    3) 파이썬
+    def solution(n):
+    answer = []
+
+    for i in range(1, n + 1):
+        if n % i == 0:
+            answer.append(i)
+
+    return answer
+
+ */
